@@ -19,7 +19,12 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'awesome-typescript-loader'
-      }
+      },
+      { 
+        test: /\.pug$/, 
+        enforce: 'pre',
+        loader: "template-html-loader" 
+      },
     ],
     rules: [
       {
@@ -29,8 +34,5 @@ module.exports = {
           options: { }
       }
     ]
-  },
-  /*plugins:[
-    
-  ]*/
+  }
 };

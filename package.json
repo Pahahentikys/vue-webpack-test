@@ -13,6 +13,9 @@
   "license": "",
   "devDependencies": {
     "awesome-typescript-loader": "^3.4.1",
+    "consolidate": "^0.15.0",
+    "pug": "^2.0.0-rc.4",
+    "template-html-loader": "^1.0.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.6.2",
     "webpack": "1.13.2"
