@@ -13,7 +13,7 @@ config.devServer = {
 config.module.loaders.push({
     test: /\.scss$/, 
     enforce: 'pre',
-    loader: "style-loader!css-loader!resolve-url-loader!sass-loader"
+    loader: "style-loader!css-loader!autoprefixer-loader!resolve-url-loader!sass-loader"
 });
 
 module.exports = config;
