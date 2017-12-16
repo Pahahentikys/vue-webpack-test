@@ -1,29 +1,27 @@
 const config = require('./main.config'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+    CompressionPlugin = require("compression-webpack-plugin");
 
-config.module.loaders.push({
-    test: /\.scss$/,
-    enforce: 'pre',
-    //loader: "style-loader!css-loader!resolve-url-loader!sass-loader"
-    loader: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        loader: "style-loader!css-loader!resolve-url-loader!sass-loader"
-    })
-});
-
-/*config.module.rules = [];
 config.module.rules.push({
     test: /\.scss$/,
-    enforce: 'pre',
     use: ExtractTextPlugin.extract({
         fallback: "style-loader",
         use: "style-loader!css-loader!resolve-url-loader!sass-loader"
     })
-});*/
+});
 
-config.module.plugins = [
-    new ExtractTextPlugin("styles.css")
-
+config.plugins = [
+    new ExtractTextPlugin({filename: "styles.css"}),
+    new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.optimize\.css$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: { discardComments: {removeAll: true } },
+        canPrint: true
+    }),
+    new UglifyJsPlugin(),
+    new CompressionPlugin({test: /\.min.js$|\.min.css$/})
 ];
 
 module.exports = config;

@@ -1,40 +1,39 @@
-const path = require('path'),
-    webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: {
       'main': './src/main.ts'
     },
     output: {
-      path: './dist/',
+      path: path.resolve(__dirname, '../dist'),
       filename: './[name].js'
     },
 
     resolve: {
-      extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
 
     module: {
-      loaders: [
+        rules: [
           {
               test: /\.ts$/,
-              loader: 'awesome-typescript-loader'
+              use: [{loader: 'awesome-typescript-loader'}]
           },
           {
               test: /\.pug$/,
               enforce: 'pre',
-              loader: "template-html-loader"
+              use: [{loader: "template-html-loader"}]
           },
           {
               test: /\.(png|jpg|gif)$/,
-              loader: 'url-loader',
-              options: {
-                  limit: 8192
-              }
+              use: [{
+                  loader: 'url-loader',
+                  options: {limit: 8192}
+              }]
           },
           {
               test: /\.(png|jpg|gif)$/,
-              loader: 'file-loader'
+              use: [{loader: 'file-loader'}]
           }
       ]
     }
