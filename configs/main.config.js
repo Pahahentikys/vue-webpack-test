@@ -1,58 +1,41 @@
 const path = require('path'),
-webpack = require('webpack');
+    webpack = require('webpack');
 
 module.exports = {
-entry: {
-  'main': './source/main.ts'
-},
-output: {
-  path: './build/',
-  filename: './[name].js'
-},
+    entry: {
+      'main': './src/main.ts'
+    },
+    output: {
+      path: './dist/',
+      filename: './[name].js'
+    },
 
-resolve: {
-  extensions: ['', '.ts', '.tsx', '.js', '.jsx']
-},
+    resolve: {
+      extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+    },
 
-module: {
-  loaders: [      
-    {
-      test: /\.ts$/,
-      loader: 'awesome-typescript-loader'
-    },
-    { 
-      test: /\.pug$/, 
-      enforce: 'pre',
-      loader: "template-html-loader" 
-    },
-    {
-        test: /\.(png|jpg|gif)$/,
-        use: [
+    module: {
+      loaders: [
           {
-            loader: 'url-loader',
-            options: {
-              limit: 8192
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [
+              test: /\.ts$/,
+              loader: 'awesome-typescript-loader'
+          },
           {
-            loader: 'file-loader',
-            options: {}  
+              test: /\.pug$/,
+              enforce: 'pre',
+              loader: "template-html-loader"
+          },
+          {
+              test: /\.(png|jpg|gif)$/,
+              loader: 'url-loader',
+              options: {
+                  limit: 8192
+              }
+          },
+          {
+              test: /\.(png|jpg|gif)$/,
+              loader: 'file-loader'
           }
-        ]
-      }
-  ],
-  rules: [
-    {
-        test: /\.ts$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
-        options: { }
-    },
-  ]
-}
+      ]
+    }
 };
