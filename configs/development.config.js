@@ -6,7 +6,7 @@ config.devServer = {
     host: "localhost",
     historyApiFallback: true,
     watchOptions: {aggregateTimeout: 300, poll: 1000},
-    contentBase: path.resolve(__dirname, '../dist'),
+    contentBase: path.resolve(__dirname, '../src'),
     open: true,
     openPage: ''
 };

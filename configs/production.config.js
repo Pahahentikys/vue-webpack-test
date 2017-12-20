@@ -8,7 +8,7 @@ config.module.rules.push({
     test: /\.scss$/,
     use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: "style-loader!css-loader!resolve-url-loader!sass-loader"
+        use: "css-loader!resolve-url-loader!sass-loader"
     })
 });
 
