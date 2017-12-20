@@ -2,7 +2,8 @@ const config = require('./main.config'),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
     UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
-    CompressionPlugin = require("compression-webpack-plugin");
+    CompressionPlugin = require("compression-webpack-plugin"),
+    CopyWebpackPlugin = require('copy-webpack-plugin');
 
 config.module.rules.push({
     test: /\.scss$/,
@@ -21,7 +22,11 @@ config.plugins = [
         canPrint: true
     }),
     new UglifyJsPlugin(),
-    new CompressionPlugin({test: /\.min.js$|\.min.css$/})
+    new CompressionPlugin({test: /\.min.js$|\.min.css$/}),
+    new CopyWebpackPlugin([
+       {from: 'src/assets/images', to:'dist/'},
+       {from: 'src/index.html', to:'dist/'}
+    ])
 ];
 
 module.exports = config;

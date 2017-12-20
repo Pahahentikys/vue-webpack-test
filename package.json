@@ -15,6 +15,7 @@
     "awesome-typescript-loader": "^3.4.1",
     "compression-webpack-plugin": "^1.1.2",
     "consolidate": "^0.15.0",
+    "copy-webpack-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
     "cssnano": "latest",
     "extract-text-webpack-plugin": "^2.1.2",
